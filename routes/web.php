@@ -45,6 +45,12 @@ Route::get('/help', function() {
 });
 
 
+Route::get('/herve', function () {
+    $name = 'Seka Hervé';
+
+    return view('pages/herve')->with('name',$name);
+});
+
 
 Route::get('/events', function() {
 
@@ -54,6 +60,8 @@ Route::get('/events', function() {
       'Meetup TDN',
       'Laravel Conference'
     ];
+
+    $events = Event::all();
 
     return view('events/index',
         compact('events'));
