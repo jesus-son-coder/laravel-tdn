@@ -47,8 +47,9 @@ Route::get('/help', function() {
 
 Route::get('/herve', function () {
     $name = 'Seka Hervé';
+    $function = 'developer';
 
-    return view('pages/herve')->with('name',$name);
+    return view('pages/herve')->with('name',$name)->with('function',$function);
 });
 
 
