@@ -1,0 +1,36 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class AddImageToPostsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::table('posts', function(Blueprint $table) {
+            $table->string('image')->after('title')->nullable();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::table('posts', function(Blueprint $table) {
+            $table->dropColumn('image');
+
+            /* Si vous avez plusieurs colonnes, ajoutez un tableau en argument :
+            $table->dropColumn(['image', 'colmun2', ...]);
+            */
+        });
+    }
+}
