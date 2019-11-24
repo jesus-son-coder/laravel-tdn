@@ -4,7 +4,7 @@
 <div class="flex-center position-ref full-height">
     <div class="content">
         <div class="title m-b-md">
-            Bonjour {{ $name  }} !</br>
+            Bonjour {{ $first_name  }} {{ $last_name }} !</br>
             Vous êtes {{ $function  }}
         </div>
     </div>

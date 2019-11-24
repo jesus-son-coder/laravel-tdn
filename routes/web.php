@@ -47,12 +47,11 @@ Route::get('/help', function() {
 
 Route::get('/herve', function () {
 
-    $data = array(
-        'name' => 'Seka Hervé',
-        'function' => 'developer'
-    );
+    $first_name = 'Hervé';
+    $last_name = 'Seka';
+    $function = 'developer';
 
-    return view('pages/herve', $data);
+    return view('pages/herve', compact('first_name','last_name', 'function'));
 });
 
 
