@@ -49,7 +49,10 @@ Route::get('/herve', function () {
     $name = 'Seka Hervé';
     $function = 'developer';
 
-    return view('pages/herve')->with('name',$name)->with('function',$function);
+    return view('pages/herve')->with([
+        'name' => $name,
+        'function'=> $function
+    ]);
 });
 
 
