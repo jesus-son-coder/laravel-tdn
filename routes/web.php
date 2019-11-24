@@ -14,15 +14,6 @@
 use App\Event;
 
 Route::get('/', function () {
-    /*
-    App\Event::create([
-            'name' => 'Cake PHP',
-            'description' => 'The little performing Challenger',
-            'location' => 'Berlin, DE',
-            'price' => 90,
-        ]
-    ); */
-
 
     $events = Event::all();
     return view('events/index')->withEvents($events);
