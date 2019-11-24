@@ -46,13 +46,13 @@ Route::get('/help', function() {
 
 
 Route::get('/herve', function () {
-    $name = 'Seka Hervé';
-    $function = 'developer';
 
-    return view('pages/herve')->with([
-        'name' => $name,
-        'function'=> $function
-    ]);
+    $data = array(
+        'name' => 'Seka Hervé',
+        'function' => 'developer'
+    );
+
+    return view('pages/herve', $data);
 });
 
 
