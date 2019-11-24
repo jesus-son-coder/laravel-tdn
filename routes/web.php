@@ -55,7 +55,7 @@ Route::get('/events', function() {
       'Laravel Conference'
     ];
 
-    $events = Event::all();
+    // $events = Event::all();
 
     return view('events/index',
         compact('events'));

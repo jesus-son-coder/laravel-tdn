@@ -16,15 +16,7 @@
             <h2>{{count($events)}} évènements</h2>
         </div>
         <div class="contents">
-            @foreach($events as $event)
-                <article>
-                    <h3>{{ $event->name }}</h3>
-                    <p>{{ $event->description }}</p>
-                    <p>{{ $event->price }} €</p>
-                    <p>Lieu : {{ $event->location }}</p>
-                </article>
-                <hr>
-            @endforeach
+            <?php dump($events); ?>
         </div>
 
     </div>
