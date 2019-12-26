@@ -127,3 +127,45 @@ Route::get('/querybuilder_where', function () {
 
     return view('events/index');
 });
+
+
+
+
+/* *************************************************** */
+/*    QueryBuilder/Eloquent #3: Le Where() dynamique   */
+/* *************************************************** */
+Route::get('/querybuilder_where_dynamique', function () {
+
+    $event1 = DB::table('events')->whereName('Cake PHP')->get();
+    dump($event1);
+
+    // Combiner deux critères :
+    $event2 = DB::table('events')->whereNameAndPrice('Cake PHP', 90)->get(['location']);
+    dump($event2);
+
+
+    // Utilisation du mot de liaison "Or" :
+    $event3 = DB::table('events')->whereNameOrPrice('Cake PHP', 200)->get();
+    dump($event3);
+
+    // Utilisation du mot de liaison "orWhere" :
+    $event4 = DB::table('events')
+        ->where('name', 'Cake PHP')
+        ->orWhere('price', 200)
+        ->get();
+
+    dump($event4);
+
+
+    // Utilisation de Where avec la liaison "ET" :
+    $event5 = DB::table('events')
+        ->where('name', 'Cake PHP')
+        ->where('price', 90)
+        ->get();
+    dump($event5);
+
+
+    die();
+
+    return view('events/index');
+});
