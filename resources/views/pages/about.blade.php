@@ -1,5 +1,9 @@
 @extends('layouts/master', ['title' => 'Home'])
 
+@push('header.stylesheets')
+    <link href="../../public/css/app2.css" rel="stylesheet" type="text/css">
+@endpush
+
 @section('content')
 <div class="flex-center position-ref full-height">
     <div class="content">
