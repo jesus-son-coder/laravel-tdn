@@ -74,9 +74,9 @@ Route::get('/test1', function () {
 });
 
 
-/* ******************************************* */
-/* Utilisation du QueryBuilder avec Eloquent : */
-/* ******************************************* */
+/* ********************************************** */
+/* Utilisation du QueryBuilder avec Eloquent #1:  */
+/* ********************************************** */
 Route::get('/querybuilder_test1', function () {
     // dump( DB::table('events')->get());
     // $events = DB::table('events')->get();
@@ -97,3 +97,33 @@ Route::get('/querybuilder_test1', function () {
     return view('events/index');
 });
 
+
+
+
+/* ********************************************** */
+/*    QueryBuilder/Eloquent #2: clause Where()    */
+/* ********************************************** */
+Route::get('/querybuilder_where', function () {
+
+    // Supérieur à :
+    $events_sup_a_100 = DB::table('events')->where('price', '>', 100)->get(['id', 'location as place']);
+    // dump($events_sup_a_100);
+
+
+    // Comparer des éléments Différents :
+    $events_differents = DB::table('events')->where('price', '!=', 200)->get(['id', 'location as place']);
+    // dump($events_differents);
+
+
+    // Tester l'égalité - méthode #1 :
+    $events_70 = DB::table('events')->where('price', '=', 90)->get(['id', 'location as place']);
+    dump($events_70);
+
+    // Tester l'égalité - méthode #2 :
+    $events_70 = DB::table('events')->where('price', 90)->get(['id', 'location as place']);
+    dump($events_70);
+
+    die();
+
+    return view('events/index');
+});
