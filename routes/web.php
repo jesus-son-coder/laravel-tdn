@@ -63,3 +63,37 @@ Route::get('/events', function() {
 
 
 
+Route::get('/test1', function () {
+    // dd(DB::select('SELECT * from events'));
+    $event = DB::select('SELECT * from events')[0];
+    dump($event);
+    dump($event->location);
+    die();
+    return view('events/index');
+
+});
+
+
+/* ******************************************* */
+/* Utilisation du QueryBuilder avec Eloquent : */
+/* ******************************************* */
+Route::get('/querybuilder_test1', function () {
+    // dump( DB::table('events')->get());
+    // $events = DB::table('events')->get();
+
+    // Récupérer que les données d'une seule colonne ("locations") de la table "events" :
+    $locations = DB::table('events')->get(['location']);
+    // dump($locations);
+
+    // Récupérer le premier élément d'une liste :
+    $first_location = DB::table('events')->get(['location'])->first();
+
+    // Renommer le champ "location" avec "place" dans le résultat obtenu :
+    $first_location = DB::table('events')->get(['location as place'])->first();
+    dump($first_location);
+
+    die();
+
+    return view('events/index');
+});
+
