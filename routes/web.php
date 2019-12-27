@@ -229,4 +229,20 @@ Route::get('/querybuilder_update_one_data', function () {
 
 
 
+/* ********************************************************** */
+/*    QueryBuilder/Eloquent #7: Suppression d'un élément  :   */
+/* ********************************************************** */
+Route::get('/querybuilder_delete_data', function () {
+
+    DB::table('events')->where('id', '=', 7)->delete();
+
+    die('La suppression a fonctionné avec succès !');
+    return view('events/index');
+});
+
+
+
+
+
+
 
