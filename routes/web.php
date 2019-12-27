@@ -174,7 +174,7 @@ Route::get('/querybuilder_where_dynamique', function () {
 
 
 /* ****************************************** */
-/*    QueryBuilder/Eloquent #3: Le Count()   */
+/*    QueryBuilder/Eloquent #4: Le Count()   */
 /* ***************************************** */
 Route::get('/querybuilder_count', function () {
 
@@ -184,5 +184,32 @@ Route::get('/querybuilder_count', function () {
 
     return view('events/index');
 });
+
+
+
+/* ***************************************************** */
+/*    QueryBuilder/Eloquent #5: Insertion de données :   */
+/* ***************************************************** */
+Route::get('/querybuilder_insert_data', function () {
+
+    DB::table('events')->insert([
+        [
+            'name' => 'MySQL',
+            'description' => 'Devenez expert en gestion de base de données',
+            'location' => 'New York, US',
+            'price' => 150
+        ],
+        [
+            'name' => 'Angular JS',
+            'description' => 'Le framework moderne JS',
+            'location' => 'Sydney, Australia',
+            'price' => 120
+        ]
+    ]);
+
+    die('L\'insertion a fonctionné avec succès !');
+    return view('events/index');
+});
+
 
 
