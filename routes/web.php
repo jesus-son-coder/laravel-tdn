@@ -169,3 +169,20 @@ Route::get('/querybuilder_where_dynamique', function () {
 
     return view('events/index');
 });
+
+
+
+
+/* ****************************************** */
+/*    QueryBuilder/Eloquent #3: Le Count()   */
+/* ***************************************** */
+Route::get('/querybuilder_count', function () {
+
+    $nbre = DB::table('events')->where('price', '>', 70)->count();
+    dump($nbre);
+    die();
+
+    return view('events/index');
+});
+
+
