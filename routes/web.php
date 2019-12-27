@@ -288,3 +288,46 @@ Route::get('/eloquent_model_insert_data', function () {
 
 
 
+/* ************************************************************************ */
+/*    Eloquent/Models #3: Enregistment de données en base - Méthode #2  :   */
+/* ************************************************************************ */
+Route::get('/eloquent_model_insert_data_2', function () {
+
+    $event = new Event([
+        'name' => "Management de Projet",
+        'description' => "Devenez Chef de projet",
+        'location' => "Bruxelles, BE",
+        'price' => 130
+    ]);
+
+    /* Avec cette méthode, il est IMPERATIF de déclarer l'attribut "filliable" dans le model 'Event' : */
+    $event->save();
+
+    die("L'enregistrement avec le Model a fonctionné avec succès !");
+    return view('events/index');
+});
+
+
+
+/* ************************************************************************ */
+/*    Eloquent/Models #4: Enregistment de données en base - Méthode #3  :   */
+/* ************************************************************************ */
+Route::get('/eloquent_model_insert_data_3', function () {
+
+    $event = Event::create([
+        'name' => "Linux",
+        'description' => "Ingénieur Système Unix",
+        'location' => "Toronto, CA",
+        'price' => 250
+    ]);
+
+    $event->save();
+
+    die("L'enregistrement avec le Model a fonctionné avec succès !");
+    return view('events/index');
+});
+
+
+
+
+
