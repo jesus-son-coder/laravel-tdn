@@ -352,3 +352,5 @@ Route::get('/eloquent_model_get_data', function () {
 
 
 
+
+
