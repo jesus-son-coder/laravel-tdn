@@ -242,7 +242,27 @@ Route::get('/querybuilder_delete_data', function () {
 
 
 
+/* *************************************************************************************************************** */
+/*                                             TRAVAILLER AVEC DES MODELS                                          */
+/* *************************************************************************************************************** */
 
 
+/* **************************************************** */
+/*    Eloquent/Models #1: Sélectionner un élément  :   */
+/* *************************************************** */
+Route::get('/eloquent_model_select_data', function () {
 
+    $event_from_queryBuilder = DB::table('events')->find(7);
+    dump($event_from_queryBuilder);
+
+    $event_from_Model = App\Event::find(7);
+    // Sélectionner tout l'objet :
+    dump($event_from_Model);
+
+    // Sélectionner un champ de l'objet :
+    dump($event_from_Model->description);
+
+    die();
+    return view('events/index');
+});
 
