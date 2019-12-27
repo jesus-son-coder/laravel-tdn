@@ -213,3 +213,20 @@ Route::get('/querybuilder_insert_data', function () {
 
 
 
+/* ***************************************************** */
+/*    QueryBuilder/Eloquent #6: Update d'un élément  :   */
+/* ***************************************************** */
+Route::get('/querybuilder_update_one_data', function () {
+
+    DB::table('events')->whereId(7)->update([
+        'name' => 'MySQL5',
+        'price' => 155
+    ]);
+
+    die('La modification a fonctionné avec succès !');
+    return view('events/index');
+});
+
+
+
+
