@@ -266,3 +266,25 @@ Route::get('/eloquent_model_select_data', function () {
     return view('events/index');
 });
 
+
+
+/* ************************************************************************ */
+/*    Eloquent/Models #2: Enregistment de données en base - Méthode #1  :   */
+/* ************************************************************************ */
+Route::get('/eloquent_model_insert_data', function () {
+
+    $event = new App\Event();
+
+    $event->name = 'React JS';
+    $event->description = "Le framework surpuissant JS";
+    $event->location = 'Dallas TX, US';
+    $event->price = 210;
+
+    $event->save();
+
+    die("L'enregistrement avec le Model a fonctionné avec succès !");
+    return view('events/index');
+});
+
+
+
