@@ -331,3 +331,24 @@ Route::get('/eloquent_model_insert_data_3', function () {
 
 
 
+/* ******************************************************** */
+/*    Eloquent/Models #5: Récupérer des enregistrements :   */
+/* ******************************************************** */
+Route::get('/eloquent_model_get_data', function () {
+
+    // Méthode #1 :
+    $allEvents_1 = App\Event::all();
+    dump($allEvents_1);
+
+    // Méthode #2 :
+    $event = new Event();
+    $allEvents_2 = $event->all();
+    dump($allEvents_2);
+
+    die();
+    return view('events/index');
+});
+
+
+
+
