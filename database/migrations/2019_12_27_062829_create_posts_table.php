@@ -13,13 +13,13 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function(Blueprint $table) {
-           $table->increments('id');
-           $table->string('title');
-           $table->text('body');
-           $table->boolean('published')->default(false);
-           $table->timestamps();
-        });
+        /*Schema::create('posts', function(Blueprint $table) {
+            $table->increments('id');
+            $table->string('title');
+            $table->text('body');
+            $table->boolean('published')->default(false);
+            $table->timestamps();
+        });*/
     }
 
     /**
