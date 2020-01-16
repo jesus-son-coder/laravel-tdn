@@ -78,12 +78,12 @@ Route::get('/test1', function () {
 /* Utilisation du QueryBuilder avec Eloquent #1:  */
 /* ********************************************** */
 Route::get('/querybuilder_test1', function () {
-    // dump( DB::table('events')->get());
-    // $events = DB::table('events')->get();
+    $events = DB::table('events')->get();
+    dump($events);
 
     // Récupérer que les données d'une seule colonne ("locations") de la table "events" :
     $locations = DB::table('events')->get(['location']);
-    // dump($locations);
+    dump($locations);
 
     // Récupérer le premier élément d'une liste :
     $first_location = DB::table('events')->get(['location'])->first();
@@ -107,12 +107,12 @@ Route::get('/querybuilder_where', function () {
 
     // Supérieur à :
     $events_sup_a_100 = DB::table('events')->where('price', '>', 100)->get(['id', 'location as place']);
-    // dump($events_sup_a_100);
+    dump($events_sup_a_100);
 
 
     // Comparer des éléments Différents :
     $events_differents = DB::table('events')->where('price', '!=', 200)->get(['id', 'location as place']);
-    // dump($events_differents);
+    dump($events_differents);
 
 
     // Tester l'égalité - méthode #1 :
@@ -251,10 +251,11 @@ Route::get('/querybuilder_delete_data', function () {
 /*    Eloquent/Models #1: Sélectionner un élément  :   */
 /* *************************************************** */
 Route::get('/eloquent_model_select_data', function () {
-
+    // Avec le QueryBuilder :
     $event_from_queryBuilder = DB::table('events')->find(7);
     dump($event_from_queryBuilder);
 
+    // Avec le Model et l'objet 'Event' :
     $event_from_Model = App\Event::find(7);
     // Sélectionner tout l'objet :
     dump($event_from_Model);
