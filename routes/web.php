@@ -358,21 +358,7 @@ Route::get('/eloquent_model_get_data', function () {
 /* ************************************************************************ */
 Route::get('/helpers_1', function () {
 
-    Event::create([
-        'name' => "Mathématiques",
-        'description' => "Cours de maths",
-        'location' => "Dublin, IR",
-        'price' => 0,
-        'starts_at' => new DateTime('+5 days')
-    ]);
-
-    Event::create([
-        'name' => "Algèbre/Géométrie",
-        'description' => "Cours approfondi de maths",
-        'location' => "Barcelona, ES",
-        'price' => 0,
-        'starts_at' => new DateTime('+10 hours')
-    ]);
+    Event::destroy([4]);
 
 });
 

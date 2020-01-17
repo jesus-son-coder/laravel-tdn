@@ -23,7 +23,9 @@
                 <article>
                     <h3>{{ $event->name }}</h3>
                     <p>{{ $event->description }}</p>
-                    <p>{{ $event->price }} €</p>
+                    <p>
+                        {!! format_price($event) !!}
+                    </p>
                     <p>Lieu : {{ $event->location }}</p>
                     <p>Date : {{ (new DateTime($event->starts_at))->format('d/m/Y H:i') }}</p>
                 </article>
