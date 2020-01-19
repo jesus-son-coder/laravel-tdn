@@ -27,7 +27,7 @@
                         {!! format_price($event) !!}
                     </p>
                     <p>Lieu : {{ $event->location }}</p>
-                    <p>Date : {{ (new DateTime($event->starts_at))->format('d/m/Y H:i') }}</p>
+                    <p>Date : {{ format_date($event->starts_at) }}</p>
                 </article>
                 @if(! $loop->last)
                     <hr>
