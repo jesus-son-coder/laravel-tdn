@@ -12,7 +12,7 @@
     </style>
 </head>
 <body>
-<div class="flex-center position-ref full-height">
+<div class="flex-cent er position-ref full-height">
     <div class="content">
         <div class="title m-b-md">
             <h1>Events Space</h1>
@@ -23,9 +23,8 @@
                 <article>
                     <h3>{{ $event->name }}</h3>
                     <p>{{ $event->description }}</p>
-                    <p>
-                        {!! format_price($event) !!}
-                    </p>
+                    <p>Contribution : {{ $event->price }} €</p>
+                    <p>Coût total : {{ $event->fake_price }} €</p>
                     <p>Lieu : {{ $event->location }}</p>
                     <p>Date : {{ format_date($event->starts_at) }}</p>
                 </article>

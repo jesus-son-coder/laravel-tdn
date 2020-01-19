@@ -16,7 +16,11 @@ use App\Event;
 Route::get('/', function () {
 
     $events = Event::all();
+/*
+    $event = Event::first();
 
+    return $event;
+*/
     return view('events/index')->withEvents($events);
 
 });
