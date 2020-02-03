@@ -12,6 +12,35 @@
 */
 
 use App\Event;
+use Illuminate\Support\Facades\Route;
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Routes SDZ
+|--------------------------------------------------------------------------
+*/
+/* Route::get('sdz_contact', 'Sdz\ContactController@getForm');
+Route::post('sdz_contact', 'Sdz\ontactController@postForm'); */Route::get('sdz_users', 'Sdz\UsersController@getInfos');
+
+Route::get('sdz_email', 'Sdz\EmailController@getForm');
+Route::post('sdz_email', ['uses' => 'Sdz\EmailController@postForm', 'as' => 'storeEmail']);
+
+Route::post('sdz_users', 'Sdz\UsersController@postInfos');
+
+Route::resource('sdz_user', 'Sdz\UserController');
+
+Route::resource('sdz_post', 'Sdz\Postcontroller', ['except' => ['show', 'edit']]);
+
+// Route::get('sdz_post', 'Sdz\Postcontroller@store');
+
+
+/*
+|--------------------------------------------------------------------------
+| Routes TEACHERS DU NET
+|--------------------------------------------------------------------------
+*/
 
 Route::get('/', function () {
 
@@ -23,6 +52,17 @@ Route::get('/', function () {
 */
     return view('events/index')->withEvents($events);
 
+});
+
+
+Route::get('/url-shortener', function() {
+
+    return view('url-shortener/index');
+});
+
+
+Route::post('/url-shortener', function() {
+    dd('Check et Bang !');
 });
 
 
@@ -367,3 +407,11 @@ Route::get('/helpers_1', function () {
 });
 
 
+
+Auth::routes();
+Route::get('/logout', 'Auth\LoginController@logout');
+// Route::post('/logout', 'Auth\LoginController@logout');
+
+
+
+Route::get('/home', 'HomeController@index');

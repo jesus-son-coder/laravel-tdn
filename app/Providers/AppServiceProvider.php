@@ -23,6 +23,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(
+            'App\Repositories\Sdz\EmailRepositoryInterface',
+            'App\Repositories\Sdz\EmailRepository'
+        );
     }
 }
