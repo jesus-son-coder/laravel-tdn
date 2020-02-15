@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddImageToPostsTable extends Migration
+class CreateTagsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class AddImageToPostsTable extends Migration
      */
     public function up()
     {
-        Schema::table('posts', function(Blueprint $table) {
-           $table->string('image')->nullable();
+        Schema::create('sdz_tags', function(Blueprint $table)
+        {
+            $table->increments('id');
+            $table->timestamps();
+            $table->string('tag',50)->unique();
+            $table->string('tag_url', 60)->unique();
         });
     }
 
@@ -25,8 +29,6 @@ class AddImageToPostsTable extends Migration
      */
     public function down()
     {
-        Schema::table('posts', function(Blueprint $table) {
-           $table->dropColumn('image');
-        });
+        Schema::drop('sdz_tags');
     }
 }

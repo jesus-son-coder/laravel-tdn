@@ -22,4 +22,9 @@ class Post extends Model
     {
         return $this->belongsTo('App\Models\Sdz\User');
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany('App\Models\Sdz\Tag', 'sdz_post_tag');
+    }
 }

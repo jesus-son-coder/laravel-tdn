@@ -20,10 +20,17 @@
 		<article class="row bg-primary">
 			<div class="col-md-12">
 				<header>
-					<h1>{{ $post->titre }}</h1>
+					<h1>{{ $post->titre }}
+                        <div class="pull-right">
+                            @foreach($post->tags as $tag)
+                                {!! link_to('sdz_post/tag/' . $tag->tag_url, $tag->tag, ['class' => 'btn btn-xs btn-info']) !!}
+                            @endforeach
+                        </div>
+                    </h1>
 				</header>
 				<hr>
-				<section>
+
+                <section>
 					<p>{{ $post->contenu }}</p>
 					@if(Auth::check() and Auth::user()->admin)
 						{!! Form::open(['method' => 'DELETE', 'route' => ['sdz_post.destroy', $post->id]]) !!}

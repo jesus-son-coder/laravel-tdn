@@ -31,9 +31,13 @@ Route::post('sdz_users', 'Sdz\UsersController@postInfos');
 
 Route::resource('sdz_user', 'Sdz\UserController');
 
-Route::resource('sdz_post', 'Sdz\Postcontroller', ['except' => ['show', 'edit']]);
+Route::resource('sdz_post', 'Sdz\PostController', ['except' => ['show', 'edit', 'update']]);
+
+Route::get('sdz_post/tag/{tag}', 'Sdz\PostController@indexTag');
 
 // Route::get('sdz_post', 'Sdz\Postcontroller@store');
+
+
 
 
 /*

@@ -127,6 +127,10 @@ return [
     */
 
     'custom' => [
+        'tags' => [
+            'regex' => "Les mots-clés, séparés par des virgules (sans espaces), doivent avoir au maximum 50 caractères alphanuméiques.",
+        ],
+
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
