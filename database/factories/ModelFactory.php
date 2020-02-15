@@ -11,6 +11,29 @@
 |
 */
 
+$factory->define(App\Models\Sdz\Editeur::class, function(Faker\Generator $faker) {
+    return [
+        'nom' => $faker->name,
+    ];
+});
+
+$factory->define(App\Models\Sdz\Auteur::class, function(Faker\Generator $faker) {
+    return [
+        'nom' => $faker->name,
+    ];
+});
+
+$factory->define(App\Models\Sdz\Livre::class, function(Faker\Generator $faker) {
+    return [
+        'titre' => $faker->sentence(),
+        'description' => $faker->text,
+        'editeur_id' => $faker->numberBetween(1, 40),
+    ];
+});
+
+
+
+/*
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
@@ -21,3 +44,4 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+*/

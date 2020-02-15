@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Faker\Factory;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,9 +12,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(SdzUserTableSeeder::class);
-        $this->call(SdzPostTableSeeder::class);
-        $this->call(TagTableSeeder::class);
-        $this->call(PostTagTableSeeder::class);
+        factory(App\Models\Sdz\Editeur::class, 40)->create();
+        factory(App\Models\Sdz\Auteur::class, 40)->create();
+        factory(App\Models\Sdz\Livre::class, 80)->create();
+
+        for($i = 1; $i < 41 ; $i++) {
+            $number = rand(2, 8);
+            for ($j = 1; $j <= $number; $j++) {
+                DB::table('sdz_auteur_livre')->insert([
+                    'livre_id' => rand(1, 40),
+                    'auteur_id' => $i
+                ]);
+            }
+        }
     }
 }
