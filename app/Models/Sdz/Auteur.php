@@ -10,6 +10,6 @@ class Auteur extends Model
 
     public function livres()
     {
-        return $this->belongsToMany('App\Models\Sdz\Livre');
+        return $this->belongsToMany('App\Models\Sdz\Livre', 'sdz_auteur_livre');
     }
 }

@@ -39,6 +39,257 @@ Route::get('sdz_post/tag/{tag}', 'Sdz\PostController@indexTag');
 
 
 
+/*
+|--------------------------------------------------------------------------
+| Routes SDZ - Eloquent - Models (Livres, Auteurs, Editeurs)
+|--------------------------------------------------------------------------
+*/
+
+// Récupérer tous les éditeurs (avec Eloquent) :
+Route::get('sdz_books/eloquent/01', function() {
+    $editeurs = App\Models\Sdz\Editeur::all();
+    foreach($editeurs as $editeur) {
+        echo $editeur->nom, '<br>';
+    }
+    die();
+    return true;
+});
+
+// Récupérer tous les éditeurs (avec le query builder) :
+Route::get('sdz_books/query_builder/01', function() {
+    $editeurs = DB::table('sdz_editeurs')->get();
+    foreach($editeurs as $editeur) {
+        echo $editeur->id .  ' : ' . $editeur->nom . '<br>';
+    }
+    die();
+    return true;
+});
+
+// Obtenir un tableau de valeurs d'une Colonne (avec Eloquent) :
+Route::get('sdz_books/eloquent/pluck/02', function() {
+    $editeurs = App\Models\Sdz\Editeur::pluck('nom');
+    foreach($editeurs as $editeur) {
+        echo $editeur, '<br>';
+    }
+    die();
+    return true;
+});
+
+// Obtenir un tableau de valeurs d'une Colonne (avec le query builder) :
+Route::get('sdz_books/query_builder/lists/02', function() {
+    $editeurs = DB::table('sdz_editeurs')->pluck('nom');
+    foreach($editeurs as $editeur) {
+        echo $editeur, '<br>';
+    }
+    die();
+    return true;
+});
+
+
+// Trouver une ligne particulière (avec Eloquent) :
+Route::get('sdz_books/eloquent/ligne/03', function() {
+    $editeur = App\Models\Sdz\Editeur::find(10);
+    dump($editeur);
+    die();
+    return true;
+});
+
+// Trouver une ligne particulière (avec le query builder) :
+Route::get('sdz_books/query_builder/ligne/03', function() {
+    $editeur = DB::table('sdz_editeurs')->whereId(10)->first();
+    dump($editeur);
+    die();
+    return true;
+});
+
+// Sélectionner une valeur sur une colonne précise :
+Route::get('sdz_books/query_builder/valeur_d_1_champ/04', function() {
+    $editeur = DB::table('sdz_editeurs')->whereId(10)->pluck('nom');
+    dd($editeur);
+    return true;
+});
+
+// Utiliser un "select" pour sélectionner des colonnes (avec eloquent) :
+Route::get('sdz_books/eloquent/select/05', function() {
+    $editeurs = App\Models\Sdz\Editeur::select('nom')->get();
+    foreach ($editeurs as $editeur) {
+        echo $editeur->nom . '<br>';
+    }
+    die();
+    return true;
+});
+
+// Utiliser un "select" pour sélectionner des colonnes (avec le query builder) :
+Route::get('sdz_books/query_builder/select/05', function() {
+    $editeurs = DB::table('sdz_editeurs')->select('nom')->get();
+    foreach ($editeurs as $editeur) {
+        echo $editeur->nom . '<br>';
+    }
+    die();
+    return true;
+});
+
+// Utiliser le mot-clé "distinct" pour filter les valeurs uniques (avec Eloquent) :
+Route::get('sdz_books/eloquent/distinct/06', function() {
+    $livres = App\Models\Sdz\Livre::select('editeur_id')->distinct()->get();
+    foreach ($livres as $livre) {
+        echo $livre->editeur_id . '<br>';
+    }
+    die();
+    return true;
+});
+
+
+// Plusieurs conditions (avec eloquent) :
+Route::get('sdz_books/eloquent/many_conditions/07', function() {
+    $livres = App\Models\Sdz\Livre::where('titre', '<', 'c')
+        ->orWhere('titre', '>', 'v')
+        ->get();
+    foreach ($livres as $livre) {
+        echo $livre->titre . '<br>';
+    }
+    die();
+    return true;
+});
+
+// Plusieurs conditions (avec le query_builder) :  
+Route::get('sdz_books/query_builder/many_conditions/07', function() {
+    $livres = DB::table('sdz_livres')
+        ->where('titre','<','c')
+        ->orWhere('titre','>','v')
+        ->get();
+    foreach ($livres as $livre) {
+        echo $livre->titre . '<br>';
+    }
+    die();
+    return true;
+});
+
+// Encadrer des valeurs avec "whereBetween" (Eloquent) :  
+Route::get('sdz_books/eloquent/encadrer_valeurs/whereBetween/08', function() {
+    $livres = App\Models\Sdz\Livre::whereBetween('titre', array('g','k'))->get();
+    foreach ($livres as $livre) {
+        echo $livre->titre . '<br>';
+    }
+    die();
+    return true;
+});
+
+// Encadrer des valeurs avec "whereBetween" (avec le Query builder) :  
+Route::get('sdz_books/query_builder/encadrer_valeurs/whereBetween/08', function() {
+    $livres = DB::table('sdz_livres')->whereBetween('titre', array('g','k'))->get();
+    foreach ($livres as $livre) {
+        echo $livre->titre . '<br>';
+    }
+    die();
+    return true;
+});
+
+// Encadrer des valeurs avec "whereNotBetween" (Eloquent) :  
+Route::get('sdz_books/eloquent/encadrer_valeurs/whereNotBetween/09', function() {
+    $livres = App\Models\Sdz\Livre::whereNotBetween('titre', array('g','k'))->get();
+    foreach ($livres as $livre) {
+        echo $livre->titre . '<br>';
+    }
+    die();
+    return true;
+});
+
+
+// Prendre des valeurs dans un tableau (Eloquent) :
+Route::get('sdz_books/eloquent/from_tableau/whereIn/09', function() {
+    $livres = App\Models\Sdz\Livre::whereIn('editeur_id', [10, 11, 12])->get();
+    foreach ($livres as $livre) {
+        echo $livre->titre . '<br>';
+    }
+    die();
+    return true;
+});
+
+
+// Grouper/GroupBy (Eloquent) :  
+Route::get('sdz_books/eloquent/groupBy/10', function() {
+    $livres = App\Models\Sdz\Livre::
+        select('editeur_id', DB::raw('count(id) as livre_count'))
+        ->groupBy('editeur_id')
+        ->get();
+    foreach ($livres as $livre) {
+        echo $livre->editeur_id . '=>' . $livre->livre_count . '<br>';
+    }
+    die();
+    return true;
+});
+
+
+// Les Jointures : 
+// ---------------
+
+// Trouver les titres des livres pour un éditeur dont on a l'id (11) (Eloquent): 
+Route::get('sdz_books/eloquent/jointure/11', function() {
+    $livres = App\Models\Sdz\Editeur::find(11)->livres;
+    foreach ($livres as $livre) {
+        echo $livre->titre . '<br>';
+    }
+    die();
+    return true;
+});
+
+// Trouver les titres des livres pour un éditeur dont on a l'id (11) (Query Builder): 
+Route::get('sdz_books/query_builder/jointure/11', function() {
+    $livres = DB::table('sdz_editeurs')
+        ->where('sdz_editeurs.id', 11)
+        ->join('sdz_livres', 'sdz_livres.editeur_id', '=', 'sdz_editeurs.id')
+        ->get();
+    foreach ($livres as $livre) {
+        echo $livre->titre . '<br>';
+    }
+    die();
+    return true;
+});
+
+
+// Trouver les livres d'un auteur dont on connaît le nom (Eloquent) : 
+Route::get('sdz_books/eloquent/jointure/12', function() {
+    $livres = App\Models\Sdz\Livre::whereHas('auteurs', function($q) {
+            $q->whereNom('Murl Dickinson');
+        })->get();
+    foreach ($livres as $livre) {
+        echo $livre->titre . '<br>';
+    }
+    die();
+    return true;
+});
+
+// Trouver les livres d'un auteur dont on connaît le nom (avec le Query Builder) : 
+Route::get('sdz_books/query_builder/jointure/12', function() {
+    $livres = DB::table('sdz_livres')
+        ->join('sdz_auteur_livre', 'sdz_livres.id', '=', 'sdz_auteur_livre.livre_id')
+        ->join('sdz_auteurs', 'sdz_auteurs.id', '=', 'sdz_auteur_livre.auteur_id')
+        ->where('sdz_auteurs.nom', '=', 'Melba Dibbert')
+        ->get();
+    foreach ($livres as $livre) {
+        echo $livre->titre . '<br>';
+    }
+    die();
+    return true;
+});
+
+
+// Trouver les auteurs pour un éditeur dont on connaît l'Id (Eloquent) :  
+Route::get('sdz_books/eloquent/jointure/13', function() {
+    $livres = App\Models\Sdz\Editeur::find(10)->livres;
+    foreach ($livres as $livre) {
+        foreach($livre->auteurs as $auteur) {
+            echo $auteur->nom . '<br>';
+        }
+    }
+    die();
+    return true;
+});
+
+
+
+
 
 /*
 |--------------------------------------------------------------------------
