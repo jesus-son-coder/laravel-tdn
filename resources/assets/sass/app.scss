@@ -10,7 +10,8 @@
 
 
 html, body {
-  background-color: #fff;
+  /* background-color: #fff; */
+  background-color: yellow !important;
   color: #636b6f;
   font-family: 'Raleway', sans-serif;
   font-weight: 100;
@@ -19,7 +20,7 @@ html, body {
 }
 
 .full-height {
-  height: 60vh;
+  height: 56vh;
 }
 
 .flex-center {
@@ -62,4 +63,6 @@ html, body {
 
 .tdn-classroom-01 {
   color: black;
+  font-weight: 600;
+  padding-bottom: 50px;
 }

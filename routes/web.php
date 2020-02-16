@@ -12,6 +12,28 @@
 */
 
 use App\Event;
+use Illuminate\Support\Facades\Route;
+
+
+/* *************************************************************** */
+/*                           URL-SHORTENER                         */
+/* *************************************************************** */
+
+Route::get('/tdn/url-shortener', function () {
+
+    return view('url-shortener/index');
+
+});
+
+
+
+
+/* *************************************************************** */
+/*                      FIN DE URL-SHORTENER                       */
+/* *************************************************************** */
+
+
+
 
 Route::get('/', function () {
 
@@ -24,6 +46,7 @@ Route::get('/', function () {
     return view('events/index')->withEvents($events);
 
 });
+
 
 
 Route::get('/about', function () {
